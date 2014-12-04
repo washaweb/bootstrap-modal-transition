@@ -5,7 +5,7 @@ Some cool css transition effects to use with **[Bootstrap 3 modals](http://getbo
 
 ### Intro
 
-Bootstrap comes with a simple fade transition effect for modals. Just add bootstrap-modal-transiton to your project and it will extends modals with more cool transitions :
+Bootstrap comes with a simple fade effect for modals. Just add bootstrap-modal-transiton to your project and it will extends modals with some more cool transitions :
 
  * zoom
  * newspaper
