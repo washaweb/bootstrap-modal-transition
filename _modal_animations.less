@@ -1,0 +1,139 @@
+@backdrop-animation-duration: 0.4s;
+@modal-animation-duration: .5s;
+
+//  IMPORTANT : whatever transition you choose,
+//  you have to preseve the original fade transition effect
+//  in order to preserve the boostrap js transition on hiding modals
+//  exemple with newspaper effect :
+//  --
+//
+//  <div class="modal fade newspaper" id="myModalId" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+//    <div class="modal-dialog">
+//      <div class="modal-content">
+//        ...
+//      </div>
+//    </div>
+//  </div>
+
+// Global Backdrop background
+// ---------------------------
+.modal-backdrop {
+  // Fade for backdrop  
+  -webkit-backface-visibility:hidden;
+  &.zoom, &.newspaper, &.move-horizontal, &.move-from-top, &.unfold-3d, &.zoom-out {
+    opacity: 0;
+    transition: opacity @backdrop-animation-duration ease;
+  }
+  &.in {
+    opacity: @modal-backdrop-opacity;
+  }
+  
+  &.unfold-3d {
+    perspective: 500;
+  }
+}
+
+// transition effects
+// --------------------
+
+.modal {
+  // Zoom effect
+  // -------------
+  &.zoom .modal-dialog {
+    opacity: 0;
+    .transition(all @modal-animation-duration ease-in-out);
+    transform: scale(0.6);
+  }
+  &.in .modal-dialog {
+    opacity: 1;
+    .transition(all 0.4s ease-in-out);
+    transform: scale(1); 
+  }
+
+  // Newspaper effect
+  // --------------------
+  &.fade.newspaper .modal-dialog,
+  &.newspaper .modal-dialog {
+    opacity: 0;
+    -webkit-transition: all @modal-animation-duration ease-in-out; 
+    transition: all @modal-animation-duration;
+    transform: scale(0) rotate(500deg);
+  }
+  &.fade.newspaper.in .modal-dialog,
+  &.in .modal-dialog {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+
+  // Move-horizontal effect
+  // --------------------
+
+  &.move-horizontal .modal-dialog {
+    opacity: 0;
+    transition: all @modal-animation-duration;
+    transform: translateX(-50px);
+  }
+  &.in .modal-dialog {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  // Move-from-top effect
+  // --------------------
+
+  &.move-from-top .modal-dialog {
+    opacity: 0;
+    transition: all @modal-animation-duration;
+    transform: translateY(-100px);
+  }
+  &.in .modal-dialog {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  // 3d unfold
+  // --------------------
+  &.unfold-3d .modal-dialog {
+    opacity: 0;
+    transition: all @modal-animation-duration ease-in-out;
+    transform-style: preserve-3d;
+    transform: rotateY(-60deg);
+  }
+  &.in .modal-dialog {
+    opacity: 1;
+    transform: rotateY(0deg);
+  }
+
+  // Zoom-out effect
+  // --------------------
+
+  &.fade.zoom-out .modal-dialog,
+  &.zoom-out .modal-dialog {
+    opacity: 0;
+    transition: all @modal-animation-duration;
+    transform: scale(1.3);
+  }
+  &.fade.zoom-out.in .modal-dialog,
+  &.in .modal-dialog {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+//special 3d transition (use of modernizr to detect browser support)
+// -------------------------------------------------------------------
+
+.csstransforms3d {
+  .modal {
+      // real 3d unfold
+    // --------------------
+    &.unfold-3d .modal-dialog {
+      transform: none;
+      transform-origin: 50% 100%;
+      transform: scale(.7) rotate3d(-1, 1, 0, -60deg);
+    }
+    &.in .modal-dialog {
+      transform: scale(1) rotate3d(-1, 1, 0, 0deg);
+    }
+  }
+}
