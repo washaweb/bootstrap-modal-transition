@@ -1,11 +1,11 @@
 bootstrap-modal-transition
 ==========================
 
-Some cool css transition effects form Bootstrap 3 modals
+Some cool css transition effects to use with **[Bootstrap 3 modals](http://getbootstrap.com/javascript/#modals)**
 
 ### Intro
 
-Bootstrap comes with a simple fade transition for modals. Add this simple **[less](http://lesscss.org)** file to your project and you will get more cool transitions :
+Bootstrap comes with a simple fade transition effect for modals. Just add bootstrap-modal-transiton to your project and it will extends modals with more cool transitions :
 
  * zoom
  * newspaper
@@ -18,7 +18,7 @@ If you use **[modernizr](http://modernizr.com)**, the unfold-3d will comme with 
 
 ## Example
 
-Add the less file to your bootstrap 3 project add compile. In your Modal HTML just add the transition you want like this :
+Add the **[less](http://lesscss.org)** file to your bootstrap 3 project add compile your code. In the Modal HTML, add the transition you like :
 
     <div class="modal fade <transition-type>" id="myModalId" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
